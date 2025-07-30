@@ -18,7 +18,7 @@ corresponding configuration, the request will be rejected with a 502 error.
 import os
 from typing import Dict
 
-from fastAPI import FastAPI, Request, Response, HTTPException
+from fastapi import FastAPI, Request, Response, HTTPException
 import httpx
 
 app = FastAPI(title="AI API proxy")
