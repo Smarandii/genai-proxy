@@ -73,6 +73,7 @@ async def forward_request(prefix: str, request: Request) -> Response:
     Raises:
         HTTPException: If the upstream for the given prefix isn't configured.
     """
+    upstream = load_upstreams().get(prefix)
     header_key = f"{prefix}-api-key"
     request_api_key = None
 
@@ -85,7 +86,6 @@ async def forward_request(prefix: str, request: Request) -> Response:
             request_api_key = v
             break
 
-    upstream = UPSTREAMS.get(prefix)
     if not upstream or not upstream.is_configured():
         raise HTTPException(
             status_code=502,
